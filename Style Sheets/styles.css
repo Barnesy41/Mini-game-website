@@ -1,0 +1,105 @@
+/* Remove margins from <body> tag */
+body{
+    margin: 0px;
+}
+
+
+
+/* Viewport */
+.viewport{
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+}
+
+/*TOOLBAR STYLING*/
+/* Add blue background to the toolbar */
+.toolbar {
+    background-color: blue;
+    overflow: hidden;
+    width: 100%;
+    height:3em;
+    display:flex;
+}
+
+/* Style the links in the toolbar */
+.toolbar a{
+    text-decoration: none; /* removes the underline from the hyperlink */
+    color: #f2f2f2; /* change the colour of text on inactive web pages */
+    font-size: 20px;
+    font-weight: bold;
+    padding: 0.5em 0.5em; /* increase the height of the colour above and below the text */
+
+}
+
+div#left{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div#right{
+    margin-left: auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Add a color to the current web page title */
+.toolbar a.current {
+    background-color: blue;
+    color: rgb(255, 255, 255);
+}
+
+/* Change the colour of links when hovered over */
+.toolbar a:hover {
+    background-color: blue;
+    color: orange;
+}
+
+/* Size avatar icon */
+.avatar {
+    vertical-align: middle;
+    width: 1.5em;
+    height:1.5em;
+    border-radius: 50%;
+}
+
+
+
+/* body styling index.php */
+#main {
+    /* Background */
+    width: 100%;
+    height: 100%;
+
+    background-image: url(../images/index-background.avif);
+    background-size:100vw 100%;
+    position:absolute;
+
+    /* Text */
+    text-align: center;
+    color: orange;
+}
+
+#main a{
+    text-align: center;
+    color: orange;
+}
+
+#main a:hover{
+    text-align: center;
+    color: rgb(175, 114, 0);
+}
+
+
+
+/* registration.php syling */
+#registration-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
