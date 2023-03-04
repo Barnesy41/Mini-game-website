@@ -1,46 +1,43 @@
 <?php
-//header('Location: '.'../Pages/index.php');
-if (isset($_SESSION['avatar'])) {
-    echo "set";
-}else{
-    echo "not set" ;
-}
+header('Location: '.'../Pages/index.php');
 
 // Start a session if one has not been started already.
-if(!session_status() === PHP_SESSION_ACTIVE) {
+if(session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
-} 
+}
 
 // Set session variables
-$_SESSION['username'] = $_POST['username'];
+$username = $_GET['username'];
+$_SESSION['username'] = $username;
 $_SESSION['registered'] = true;
 
 
-//Set username cookie
-$cookie_name = "username";
-$cookie_value = $_POST['username'];
-$exp = 60 * 60 * 24 * 30;
+//Commoon cookie values
+$exp = time() + 60 * 60 * 24 * 365;
 $path = "/";
 
-setcookie(
-    $cookie_name,
-    $cookie_value,
-    time() + $exp,
-    $path
-);
-
-
-
 //Set avatar cookie
+$avatarID = $_SESSION['avatar'];
 $cookie_name = "avatar";
-$cookie_value = $_SESSION['avatar'];
-$exp = 60 * 60 * 24 * 30;
+$cookie_value = $avatarID;
 
 setcookie(
     $cookie_name,
     $cookie_value,
-    time() + $exp,
+    $exp,
     $path
 );
+
+//Set username cookie
+$cookie_name = "username";
+$cookie_value = $username;
+
+setcookie(
+    $cookie_name,
+    $cookie_value,
+    $exp,
+    $path
+);
+
 
 ?>

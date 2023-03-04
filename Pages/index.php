@@ -14,10 +14,10 @@
 
 <!-- Check if cookies are set -->
 <?php
+    if (session_status() !== PHP_SESSION_ACTIVE) {
+        session_start();
+    }
     if(isset($_COOKIE['username']) && isset($_COOKIE['avatar'])){
-        if (!session_status() === PHP_SESSION_ACTIVE) {
-            session_start();
-        }
         $_SESSION['username'] = $_COOKIE['username'];
         $_SESSION['avatar'] = $_COOKIE['avatar'];
         $_SESSION['registered'] = true;

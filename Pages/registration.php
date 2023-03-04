@@ -29,7 +29,7 @@
     <?php include '../Elements/navbar.php'; ?>
 
     <div style="width: 100%; height: 100%;" id="container">
-        <form method="post" id="registration-form" class="needs-validation" action="../Elements/process-registration.php" novalidate>
+        <form method="GET" id="registration-form" class="needs-validation" action="../Elements/process-registration.php" novalidate>
             <!--Output username field -->
             <div class="mb-3">
                 <input type="text" name="username" class="form-control" id="username" placeholder="Enter a Username..." required>

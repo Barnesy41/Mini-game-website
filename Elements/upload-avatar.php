@@ -1,4 +1,8 @@
 <?php 
+// Start a session if one has not been started already.
+  if(session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+  }
   $url = md5(uniqid(rand(), true));
   $upload_dir = "../generated-images/";
   $imageUrl = $upload_dir.$url.'.png';
