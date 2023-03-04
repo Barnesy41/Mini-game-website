@@ -14,7 +14,6 @@
 
 <!-- Check if cookies are set -->
 <?php
-echo PHP_SESSION_ACTIVE;
     if(isset($_COOKIE['username']) && isset($_COOKIE['avatar'])){
         if (!session_status() === PHP_SESSION_ACTIVE) {
             session_start();
