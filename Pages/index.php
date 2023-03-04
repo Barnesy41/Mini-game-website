@@ -15,7 +15,9 @@
 <!-- Check if cookies are set -->
 <?php
     if(isset($_COOKIE['username']) && isset($_COOKIE['avatar'])){
-        session_start();
+        if (!session_status() === PHP_SESSION_ACTIVE) {
+            session_start();
+        }
         $_SESSION['username'] = $_COOKIE['username'];
         $_SESSION['avatar'] = $_COOKIE['avatar'];
         $_SESSION['registered'] = true;
@@ -33,8 +35,8 @@
     } 
 ?>
 
+<?php include '../Elements/navbar.php'; ?>
 <div class="viewport">
-    <?php include '../Elements/navbar.php'; ?>
 
     <div id="main">
         <?php
