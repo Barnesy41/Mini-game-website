@@ -47,6 +47,7 @@
                 <a href='registration.php'>Register now</a>";
             }
         ?>
+    </div>
 
 </div>
 
