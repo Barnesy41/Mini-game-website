@@ -61,7 +61,6 @@ div#right{
 
 /* Change the colour of links when hovered over */
 .toolbar a:hover {
-    background-color: blue;
     color: orange;
 }
 
@@ -161,4 +160,4 @@ div#right{
     text-align: right;
     margin-right: 10px;
     font-weight: bold;
-  }
+}
