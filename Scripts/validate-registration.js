@@ -4,8 +4,7 @@
     const forms = document.querySelectorAll('.needs-validation');
     Array.from(forms).forEach(function (form) {
       form.addEventListener('submit', function (event) {
-          const username = form.querySelector('#username');
-          const dropdown = form.querySelector('#dropdown');
+        const username = form.querySelector('#username');
         
         // Check if username contains symbols
         if (username.value.match(/[^a-zA-Z0-9]/)) {
@@ -16,17 +15,8 @@
         else {
           username.setCustomValidity('');
         }
-          
-        // Check that the user selected an avatar
-          if (dropdown.selectedIndex === 0) {
-            dropdown.setCustomValidity('invalid');
-            event.preventDefault();
-            event.stopPropagation();
-        }
-        else {
-            dropdown.setCustomValidity('');
-        }
         
+        // Check validity
         if (!form.checkValidity()) {
           event.preventDefault();
           event.stopPropagation();

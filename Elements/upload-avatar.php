@@ -10,4 +10,6 @@
   $success = file_put_contents($file, $data);
 
   $_SESSION['avatar'] = $url . ".png";
+
+
 ?>
