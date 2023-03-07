@@ -18,6 +18,7 @@ $path = "/";
 
 //Set avatar cookie
 $avatarID = $_SESSION['avatar'];
+$_SESSION['avatarSrc'] = '../generated-images/' . $avatarID;
 $cookie_name = "avatar";
 $cookie_value = $avatarID;
 
