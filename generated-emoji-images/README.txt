@@ -1,0 +1,1 @@
+This folder stores all emoji images generated for the pairs game.
