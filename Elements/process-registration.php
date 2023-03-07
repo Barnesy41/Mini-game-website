@@ -18,6 +18,7 @@ $path = "/";
 
 //Set avatar cookie
 $avatarID = $_SESSION['avatar'];
+$_SESSION['avatarUUID'] = substr($_SESSION['avatar'], 0, 32);
 $cookie_name = "avatar";
 $cookie_value = $avatarID;
 
