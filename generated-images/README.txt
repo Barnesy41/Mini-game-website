@@ -1,0 +1,1 @@
+This folder is used to store the generated files from creating custom avatar and emoji images.
