@@ -14,9 +14,10 @@ $data = base64_decode($img);
 $file = $upload_dir . $avatarUUID . $url . ".png";
 $success = file_put_contents($file, $data);
 
-// Calculate the filename & append it to the session variable array
-// if (!isset($_SESSION['emojiImages'])) {
-//     $_SESSION['emojiImages'] = array();
-//}
+//Calculate the filename & append it to the session variable array
+ if (!isset($_SESSION['emojiImages'])) {
+     $_SESSION['emojiImages'] = array();
+ }
+ 
 
 ?>

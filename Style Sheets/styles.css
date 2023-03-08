@@ -192,3 +192,10 @@ div#right{
     height: 25vh;
     
 }
+
+.pairs-card {
+    width: 120px;
+    height: 120px;
+    border: 2px solid black;
+    margin: 1em;
+}
