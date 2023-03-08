@@ -1,28 +1,75 @@
 var emojiSrc;
-function generateRandomEmoji() {
+async function generateRandomEmoji(arrOfImageComponents) {
     //Initialize the images
     emojiEyes = new Image();
     emojiMouth = new Image();
 
-    //Start with random images
-    var emojiEyesNum = Math.floor(Math.random() * 3) + 1;
-    var emojiMouthNum = Math.floor(Math.random() * 3) + 1;
+    var isDuplicate = true;
+    eyesFileName = "";
+    mouthFileName = "";
+    arrOfFileNames = [];
+    var emojiEyesNum = -1;
+    var emojiMouthNum = -1;
+    
+    while (isDuplicate) {
+        isDuplicate = false;
 
-    //save the file name of all the current images in global variables
-    eyesFileName = "eyes" + emojiEyesNum + ".png";
-    mouthFileName = "mouth" + emojiMouthNum + ".png";
+        //Start with random images
+        emojiEyesNum = Math.floor(Math.random() * 3) + 1;
+        emojiMouthNum = Math.floor(Math.random() * 3) + 1;
+
+        //save the file name of all the current images in global variables
+        eyesFileName = "eyes" + emojiEyesNum + ".png";
+        mouthFileName = "mouth" + emojiMouthNum + ".png";
+            
+        //Append the file names to an array that is later returned by this function.
+        arrOfFileNames = [eyesFileName, mouthFileName];
         
-    //Append the file names to an array that is later returned by this function.
-    arrOfFileNames = [eyesFileName, mouthFileName];
+        if (arrOfImageComponents != undefined) {
+            for (var k = 0; k < arrOfImageComponents.length; k++) {
+                if (arrOfImageComponents[k].toString() === arrOfFileNames.toString()) {
+                    isDuplicate = true; //Image already exists
+                    break;
+                }
+            }
+        }
+
+        if (!isDuplicate) {
+            console.log(arrOfImageComponents);
+        }
+    }
 
     // Get the source of each images
     var emojiEyesSource = "../Images/" + eyesFileName;
     var emojiMouthSource = "../Images/" + mouthFileName;
     
-    //load each image into the image object
-    emojiEyes.src = emojiEyesSource;
-    emojiMouth.src = emojiMouthSource;
-    generateEmoji();
+    var promise = await new Promise(function (resolve, reject) {
+        var numOfLoadedImages = 0;
+        var numImagesToLoad = 2;
+
+        //load each image into the image object
+        emojiEyes.onload = function () {
+            numOfLoadedImages++;
+            if (numOfLoadedImages === numImagesToLoad) {
+                generateEmoji()
+                resolve([eyesFileName, mouthFileName]);
+            }
+        };
+        emojiEyesNum.onerror = reject;
+        emojiEyes.src = emojiEyesSource;
+
+        emojiMouth.onload = function () {
+            numOfLoadedImages++;
+            if (numOfLoadedImages === numImagesToLoad) {
+                generateEmoji()
+                resolve([eyesFileName, mouthFileName]);
+            }
+        };
+        emojiMouth.onerror = reject;
+        emojiMouth.src = emojiMouthSource;
+        console.log(emojiEyes, emojiMouth);
+    });
+    return promise;
 
 
     function generateEmoji() {
@@ -31,8 +78,7 @@ function generateRandomEmoji() {
         canvas.width = 240; //might not be necessary
         canvas.height = 240; //might not be necessary
 
-        canvasContext.strokeStyle = "red"; //TODO cycle colors
-        //canvasContext.rect(0, 0, canvas.width, canvas.height);
+        console.log(emojiEyes, emojiMouth);
         canvasContext.drawImage(emojiEyes, (240 - emojiEyes.width) / 2, 10);
         canvasContext.drawImage(emojiMouth, (240 - emojiMouth.width) / 2, 10);
 
@@ -56,5 +102,4 @@ function generateRandomEmoji() {
 
         }
     }
-    return arrOfFileNames;
 }

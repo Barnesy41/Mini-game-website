@@ -161,3 +161,34 @@ div#right{
     margin-right: 10px;
     font-weight: bold;
 }
+
+
+
+/* Pairs.php styling */
+.pairs-container{
+    background-color: grey;
+    box-shadow: 5px 5px 5px 5px rgb(0, 0, 0);
+
+    width: 80%;
+    height: 80%;
+
+    margin: auto;
+    margin-top: calc((100vh - 3em - 80vh) / 2);
+     
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+#start-game-button{
+    font-size: 5vw;
+    font-weight: bold;
+
+    width: 30vw;
+    height: 25vh;
+    
+}
