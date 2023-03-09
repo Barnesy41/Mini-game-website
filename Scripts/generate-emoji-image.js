@@ -34,9 +34,6 @@ async function generateRandomEmoji(arrOfImageComponents) {
             }
         }
 
-        if (!isDuplicate) {
-            console.log(arrOfImageComponents);
-        }
     }
 
     // Get the source of each images
@@ -67,7 +64,6 @@ async function generateRandomEmoji(arrOfImageComponents) {
         };
         emojiMouth.onerror = reject;
         emojiMouth.src = emojiMouthSource;
-        console.log(emojiEyes, emojiMouth);
     });
     return promise;
 
