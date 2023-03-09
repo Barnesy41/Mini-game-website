@@ -78,7 +78,6 @@ async function generateRandomEmoji(arrOfImageComponents) {
         canvas.width = 240; //might not be necessary
         canvas.height = 240; //might not be necessary
 
-        console.log(emojiEyes, emojiMouth);
         canvasContext.drawImage(emojiEyes, (240 - emojiEyes.width) / 2, 10);
         canvasContext.drawImage(emojiMouth, (240 - emojiMouth.width) / 2, 10);
 
