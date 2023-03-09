@@ -18,9 +18,6 @@ function createNewElement(elementType, attributesArr, valuesArr, adjacentElement
     //Add the element to the document
     adjacentElement.insertAdjacentElement(method, element);
 
-    for (var i = 0; i < 100000000; i++){
-        a = 1;
-    }
 }
 
 function getAllEmojiSrc() {
