@@ -173,7 +173,7 @@ div#right{
     height: 650px;
 
     margin:auto;
-    margin-top: 40px;
+    margin-top: 20px;
 
 
     display: flex;
@@ -224,4 +224,10 @@ a.img-container.rounded:hover{
     height: 120px;
     border: 2px solid black;
     margin: 5px;
+}
+
+#timer{
+    width: auto;
+    height: auto;
+    margin-top: 20px;
 }

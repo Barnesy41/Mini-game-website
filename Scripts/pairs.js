@@ -116,8 +116,8 @@ async function pairsMainLoop() {
     //TODO: archive images after a given period of time?
 
     //generate 2 unique images
-    var numImagesToGenerate = 9;
-    var numCardsToMatch = 4;
+    var numImagesToGenerate = 2;
+    var numCardsToMatch = 2;
     var arrOfImageComponents = [];
     GLOBAL_numberOfCardsSelected = 0;
 
