@@ -3,6 +3,29 @@ function removeButton() {
     element.remove();
 }
 
+function addButton() {
+    var startButton = document.createElement('button');
+    
+    //Add attributes
+    startButton.setAttribute('type', 'button');
+    startButton.setAttribute('class', 'btn btn-primary');
+    startButton.setAttribute('id', 'start-game-button');
+    
+    //Get the adjacent element
+    var adjacentElement = document.getElementById('grid-container');
+
+    //Add the element to the document
+    adjacentElement.insertAdjacentElement('afterbegin', startButton);
+}
+    
+
+function removeChildNodes(className) {
+    const elements = document.getElementsByClassName(className);
+    while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+    }
+}
+
 function createNewElement(elementType, attributesArr, valuesArr, adjacentElementID, method) {
     var element = document.createElement(elementType);
 
@@ -89,6 +112,7 @@ function checkPair(numCardsToMatch, cardID) {
         if (isAPair) {
             pairMatchedScoreWeight = 1; //How much to increase the score by when a match is found
             GLOBAL_score += pairMatchedScoreWeight;
+            GLOBAL_numberOfMatches += 1;
 
             //TODO: check if all cards have been uncovered
         }
@@ -98,6 +122,9 @@ function checkPair(numCardsToMatch, cardID) {
                 flipCard(GLOBAL_uncoveredCardsID[i], false, GLOBAL_uncoveredCardsSrc[i], numCardsToMatch);
             }
         }
+
+        //Increase necessary counters
+        GLOBAL_numberOfAttempts++;
 
         //Empty the uncovered cards array
         GLOBAL_uncoveredCardsSrc = []; //TODO: find a better method, if there is a pointer to this array it may cause issues
@@ -109,17 +136,23 @@ GLOBAL_numberOfCardsSelected = 0;
 GLOBAL_score = 0;
 GLOBAL_uncoveredCardsSrc = [];
 GLOBAL_uncoveredCardsID = [];
-async function pairsMainLoop() {
+GLOBAL_numberOfAttempts = 0;
+GLOBAL_numberOfMatches = 0;
+GLOBAL_numMatchesRequired = 0
+GLOBAL_numberOfRounds = 6;
+GLOBAL_roundNumber = 1;
+async function pairsMainLoop(totalNumCards, numCardsToMatch) {
     removeButton(); //Remove the 'start game' button
     deleteExistingEmojis();
     
     //TODO: archive images after a given period of time?
 
     //generate 2 unique images
-    var numImagesToGenerate = 2;
+    var numImagesToGenerate = totalNumCards/2;
     var numCardsToMatch = 2;
     var arrOfImageComponents = [];
     GLOBAL_numberOfCardsSelected = 0;
+    GLOBAL_numMatchesRequired = (numCardsToMatch * numImagesToGenerate) /2;
 
     for (var i = 0; i < numImagesToGenerate; i++) {
         var arrOfUsedComponents = await generateRandomEmoji(arrOfImageComponents); //Generates a random, unique, emoji.
@@ -144,12 +177,7 @@ async function pairsMainLoop() {
 
     //TODO: Create the 'instance' of each card and keep it as hidden
     for (var i = 0; i < arrOfEmojisSrc.length; i++) {
-        //Create the 'instance' of each card and keep it as hidden
-        // var emojiFileName = arrOfEmojisSrc[i];
-        // var emojiFileSrc = '../generated-emoji-images/' + emojiFileName;
-        // var cardID = 'card-' + i;
-        // createNewElement('img', ['src', 'class', 'id'], [emojiFileSrc, 'img-container rounded', cardID], 'grid-container');
-        
+
         //Create an instance of the back of the emoji for each emoji to be displayed
         var emojiFileName = arrOfEmojisSrc[i];
         var emojiFileSrc = '../generated-emoji-images/' + emojiFileName;

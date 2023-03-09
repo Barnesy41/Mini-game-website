@@ -38,7 +38,7 @@
     <script src="../Scripts/pairs.js"></script>
 
     <!-- The js behind the timer -->
-    <script src="../Scripts/timer.js"></script>
+    <script src="../Scripts/start-round.js"></script>
 
 </head>
 
@@ -52,7 +52,7 @@
         <canvas id="hidden-canvas" hidden></canvas> <!-- element used to draw emojis before saving them as img -->
         <div class="pairs-container rounded" id="pairs-container">
             <div class = 'grid-container center' id = 'grid-container'>
-                <button type="button" id="start-game-button" class="btn btn-primary" onclick="pairsMainLoop(); startTimer()">Start Game</button> <!-- run all of the generating emojis functions using one function, update a session variable with the results then call the main loop function after. -->
+                <button type="button" id="start-game-button" class="btn btn-primary" onclick="pairsMainLoop(6,2); startRound()">Start Game</button> <!-- run all of the generating emojis functions using one function, update a session variable with the results then call the main loop function after. -->
             </div>
 
         </div>
