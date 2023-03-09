@@ -17,6 +17,10 @@ function createNewElement(elementType, attributesArr, valuesArr, adjacentElement
 
     //Add the element to the document
     adjacentElement.insertAdjacentElement(method, element);
+
+    for (var i = 0; i < 100000000; i++){
+        a = 1;
+    }
 }
 
 function getAllEmojiSrc() {
@@ -50,25 +54,64 @@ function randomizeArray(array) {
     return randomizedArray;
 }
 
-function flipCard(cardID, isFaceDown, emojiImageFileSrc) {
+function flipCard(cardID, isFaceDown, emojiImageFileSrc, numCardsToMatch) {
     //TODO: error handling, especially if image src not given
-
     //TODO: add animations
+    console.log(emojiImageFileSrc);
     if (isFaceDown) {
         elementToDelete = document.getElementById('anchor-card-' + cardID);
         createNewElement('img', ['src', 'class', 'id'], [emojiImageFileSrc, 'img-container rounded', 'card-' + cardID], 'anchor-card-' + cardID, 'beforeBegin');
         elementToDelete.remove();
-
-    }
-    else {
+        
+        GLOBAL_numberOfCardsSelected++;
+    }else {
         elementToDelete = document.getElementById('card-' + cardID);
-        var functionToCall = 'flipCard(' + i + ',' + true + ',"' + emojiFileSrc + '")';
-        createNewElement('a', ['class', 'id', 'onclick'], ['img-container rounded', 'anchor-card-' + cardID, functionToCall], 'card-' + cardID, 'beforeBegin');   
+        var functionToCall = 'flipCard(' + cardID + ',' + true + ',"' + emojiImageFileSrc + '", '+ numCardsToMatch + '); checkPair(' + numCardsToMatch + ', "' + cardID + '");';
+        createNewElement('a', ['class', 'id', 'onclick'], ['img-container rounded', 'anchor-card-'+cardID, functionToCall], 'card-' + cardID, "beforeBegin");
         elementToDelete.remove();
 
     }
 }
 
+function checkPair(numCardsToMatch, cardID) {
+    //Get the corresponding image src for the cardID and append to the array
+    var cardSrc = document.getElementById('card-' + cardID).src;
+    GLOBAL_uncoveredCardsSrc.push(cardSrc);
+    GLOBAL_uncoveredCardsID.push(cardID);
+
+    if (GLOBAL_numberOfCardsSelected % numCardsToMatch === 0) {
+        var isAPair = true;
+        //Check if the chosen cards are the same
+        for (var i = 1; i < numCardsToMatch; i++) {
+            if (GLOBAL_uncoveredCardsSrc[i - 1] !== GLOBAL_uncoveredCardsSrc[i]) {
+                isAPair = false;
+                break;
+            }
+        }
+
+        if (isAPair) {
+            pairMatchedScoreWeight = 1; //How much to increase the score by when a match is found
+            GLOBAL_score += pairMatchedScoreWeight;
+
+            //TODO: check if all cards have been uncovered
+        }
+        //Re-cover all the cards as they were not a match
+        else {
+            for (var i = 0; i < numCardsToMatch; i++) {
+                flipCard(GLOBAL_uncoveredCardsID[i], false, GLOBAL_uncoveredCardsSrc[i], numCardsToMatch);
+            }
+        }
+
+        //Empty the uncovered cards array
+        GLOBAL_uncoveredCardsSrc = []; //TODO: find a better method, if there is a pointer to this array it may cause issues
+        GLOBAL_uncoveredCardsID = [];
+    }
+}
+
+GLOBAL_numberOfCardsSelected = 0;
+GLOBAL_score = 0;
+GLOBAL_uncoveredCardsSrc = [];
+GLOBAL_uncoveredCardsID = [];
 async function pairsMainLoop() {
     removeButton(); //Remove the 'start game' button
     deleteExistingEmojis();
@@ -79,6 +122,7 @@ async function pairsMainLoop() {
     var numImagesToGenerate = 9;
     var numCardsToMatch = 4;
     var arrOfImageComponents = [];
+    GLOBAL_numberOfCardsSelected = 0;
 
     for (var i = 0; i < numImagesToGenerate; i++) {
         var arrOfUsedComponents = await generateRandomEmoji(arrOfImageComponents); //Generates a random, unique, emoji.
@@ -87,7 +131,7 @@ async function pairsMainLoop() {
     }
 
     //TODO: Get the src for each image into an array
-    arrOfEmojisSrc = getAllEmojiSrc()
+    arrOfEmojisSrc = getAllEmojiSrc();
 
     //duplicate the images the necessary number of times
     var tempArr = [];
@@ -113,8 +157,11 @@ async function pairsMainLoop() {
         var emojiFileName = arrOfEmojisSrc[i];
         var emojiFileSrc = '../generated-emoji-images/' + emojiFileName;
         var ID = 'anchor-card-' + i;
-        var functionToCall = 'flipCard(' + i + ',' + true + ',"' + emojiFileSrc + '")';
+        var functionToCall = 'flipCard(' + i + ',' + true + ',"' + emojiFileSrc + '", '+ numCardsToMatch + '); checkPair(' + numCardsToMatch + ', "' + i + '");';
         createNewElement('a', ['class', 'id', 'onclick'], ['img-container rounded', ID, functionToCall], 'grid-container', "afterBegin");   
-     }
+    }
+    
+   
 
+    
 }
