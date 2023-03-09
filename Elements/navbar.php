@@ -16,7 +16,6 @@
         echo '<a id="right" href="registration.php">Register</a>';
       }
       else{
-        //TODO: insert image selected during registration
         echo '<a id="right" href="leaderboard.php" name="leaderboard">Leaderboard</a>';
         echo '<a id="right" href="leaderboard.php" name="leaderboard"><img class="avatar" src="../generated-images/',$_SESSION['avatar'],'"></a>';
       }
