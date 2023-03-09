@@ -45,13 +45,12 @@
 
     <div class="viewport">
 
-
-        <!-- TODO: hide canvas element -->
         <canvas id="hidden-canvas" hidden></canvas> <!-- element used to draw emojis before saving them as img -->
         <div class="pairs-container rounded" id="pairs-container">
-            <div class="center" id='centerStartButton'>
+            <div class = 'grid-container center' id = 'grid-container'>
                 <button type="button" id="start-game-button" class="btn btn-primary" onclick="pairsMainLoop()">Start Game</button> <!-- run all of the generating emojis functions using one function, update a session variable with the results then call the main loop function after. -->
             </div>
+
         </div>
     </div>
 

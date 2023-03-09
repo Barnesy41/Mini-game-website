@@ -8,5 +8,5 @@ $path    = '../generated-emoji-images';
 $files = scandir($path);
 $avatarUUID = substr($_SESSION['avatar'], 0, 32);
 
-
+array_map('unlink', glob("../generated-emoji-images/".$avatarUUID."*.png"));
 ?>

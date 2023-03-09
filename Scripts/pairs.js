@@ -3,8 +3,8 @@ function removeButton() {
     element.remove();
 }
 
-function createNewElement($elementType, attributesArr, valuesArr, adjacentElementID) {
-    var element = document.createElement($elementType);
+function createNewElement(elementType, attributesArr, valuesArr, adjacentElementID, method) {
+    var element = document.createElement(elementType);
 
     //TODO: error handling when attributesArr length != valuesArr length
     //Set attributes
@@ -16,12 +16,12 @@ function createNewElement($elementType, attributesArr, valuesArr, adjacentElemen
     var adjacentElement = document.getElementById(adjacentElementID);
 
     //Add the element to the document
-    adjacentElement.insertAdjacentElement("afterbegin", element);
+    adjacentElement.insertAdjacentElement(method, element);
 }
 
 function getAllEmojiSrc() {
     $.ajax({
-        url: '../Elements/delete-emoji-images.php',
+        url: '../Elements/get-emoji-images.php',
         async: false,
         success: function (data) {
             stringOfEmojis = data;
@@ -34,37 +34,87 @@ function getAllEmojiSrc() {
 function deleteExistingEmojis() {
     //TODO: error handling
     $.ajax({
-        url: '../Elements/get-emoji-images.php',
+        url: '../Elements/delete-emoji-images.php',
         type: 'POST',
         async: false,
     })
 }
 
+function randomizeArray(array) {
+    randomizedArray = [];
+    while (array.length > 0){
+        var randomValue = Math.floor(Math.random() * array.length);
+        randomizedArray.push(array[randomValue]);
+        array.splice(randomValue, 1);
+    }
+    return randomizedArray;
+}
+
+function flipCard(cardID, isFaceDown, emojiImageFileSrc) {
+    //TODO: error handling, especially if image src not given
+
+    //TODO: add animations
+    if (isFaceDown) {
+        elementToDelete = document.getElementById('anchor-card-' + cardID);
+        createNewElement('img', ['src', 'class', 'id'], [emojiImageFileSrc, 'img-container rounded', 'card-' + cardID], 'anchor-card-' + cardID, 'beforeBegin');
+        elementToDelete.remove();
+
+    }
+    else {
+        elementToDelete = document.getElementById('card-' + cardID);
+        var functionToCall = 'flipCard(' + i + ',' + true + ',"' + emojiFileSrc + '")';
+        createNewElement('a', ['class', 'id', 'onclick'], ['img-container rounded', 'anchor-card-' + cardID, functionToCall], 'card-' + cardID, 'beforeBegin');   
+        elementToDelete.remove();
+
+    }
+}
+
 async function pairsMainLoop() {
     removeButton(); //Remove the 'start game' button
+    deleteExistingEmojis();
     
     //TODO: archive images after a given period of time?
 
-
-    //TODO: delete any existing files starting with the current user's UUID
-
-
     //generate 2 unique images
-    var numImages = 2;
+    var numImagesToGenerate = 9;
+    var numCardsToMatch = 4;
     var arrOfImageComponents = [];
 
-    for (var i = 0; i < numImages; i++) {
+    for (var i = 0; i < numImagesToGenerate; i++) {
         var arrOfUsedComponents = await generateRandomEmoji(arrOfImageComponents); //Generates a random, unique, emoji.
         arrOfImageComponents.push(arrOfUsedComponents); //Appends the image components used to create the emoji image to an array
 
     }
 
-    //TODO: Get the src for each image in an array
-    console.log(getAllEmojiSrc());
+    //TODO: Get the src for each image into an array
+    arrOfEmojisSrc = getAllEmojiSrc()
 
-    //TODO: Randomize the images
+    //duplicate the images the necessary number of times
+    var tempArr = [];
+    for (var i = 0; i < arrOfEmojisSrc.length; i++){
+        for (var k = 0; k < numCardsToMatch; k++) {
+            tempArr.push(arrOfEmojisSrc[i]);
+        }
+    }
+    arrOfEmojisSrc = tempArr;
 
-    //TODO: Create the 'instance' of each card
-    createNewElement('img', ['src', 'class'], ['../Images/eyes1.png', 'pairs-card rounded'], 'pairs-container');
+    //Randomize the images
+    arrOfEmojisSrc = randomizeArray(arrOfEmojisSrc);
+
+    //TODO: Create the 'instance' of each card and keep it as hidden
+    for (var i = 0; i < arrOfEmojisSrc.length; i++) {
+        //Create the 'instance' of each card and keep it as hidden
+        // var emojiFileName = arrOfEmojisSrc[i];
+        // var emojiFileSrc = '../generated-emoji-images/' + emojiFileName;
+        // var cardID = 'card-' + i;
+        // createNewElement('img', ['src', 'class', 'id'], [emojiFileSrc, 'img-container rounded', cardID], 'grid-container');
+        
+        //Create an instance of the back of the emoji for each emoji to be displayed
+        var emojiFileName = arrOfEmojisSrc[i];
+        var emojiFileSrc = '../generated-emoji-images/' + emojiFileName;
+        var ID = 'anchor-card-' + i;
+        var functionToCall = 'flipCard(' + i + ',' + true + ',"' + emojiFileSrc + '")';
+        createNewElement('a', ['class', 'id', 'onclick'], ['img-container rounded', ID, functionToCall], 'grid-container', "afterBegin");   
+     }
 
 }
