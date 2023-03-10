@@ -113,15 +113,24 @@ function checkPair(numCardsToMatch, cardID) {
             GLOBAL_score += pairMatchedScoreWeight;
             GLOBAL_numberOfMatches += 1;
 
-            //TODO: check if all cards have been uncovered
-        }
-        //Re-cover all the cards as they were not a match
-        else {
-            for (var i = 0; i < numCardsToMatch; i++) {
-                flipCard(GLOBAL_uncoveredCardsID[i], false, GLOBAL_uncoveredCardsSrc[i], numCardsToMatch);
-            }
+            //Increase necessary counters
+            GLOBAL_numberOfAttempts++;
+
+            //Empty the uncovered cards array
+            GLOBAL_uncoveredCardsSrc = []; //TODO: find a better method, if there is a pointer to this array it may cause issues
+            GLOBAL_uncoveredCardsID = [];
         }
 
+        //Re-cover all the cards as they were not a match
+        else {
+            var uncoveredCardsID = GLOBAL_uncoveredCardsID;
+            var uncoveredCardsSrc = GLOBAL_uncoveredCardsSrc;
+            var timeout = setTimeout(function () {
+                for (var i = 0; i < numCardsToMatch; i++) {
+                    flipCard(uncoveredCardsID[i], false, uncoveredCardsSrc[i], numCardsToMatch);
+                }
+            }, 250);
+        }
         //Increase necessary counters
         GLOBAL_numberOfAttempts++;
 
