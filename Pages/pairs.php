@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Pairs</title>
-    <link rel="stylesheet" href="../Style Sheets/styles.css" type="text/css"> <!-- link to style sheet -->
+    <!-- <link rel="stylesheet" href="../Style Sheets/styles.css" type="text/css"> link to style sheet -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -49,11 +49,17 @@
     <div class="viewport">
 
         <div class='page-content-container'>
-            <h3 id="timer" style="text-align: center">0m 0s</h3>
+            <div class='gameData-container'>
+                <h3 id="scoreCounter" class="data-element">Score: 0pts</h3>
+                <h3 id="timer" class="data-element">0m 0s</h3>
+                <h3 id="attemptsCounter" class="data-element">Attempts: 0</h3>
+            </div>
             <canvas id="hidden-canvas" hidden></canvas> <!-- element used to draw emojis before saving them as img -->
             <div class="pairs-container rounded" id="pairs-container">
                 <div class = 'grid-container center' id = 'grid-container'>
-                    <button type="button" id="start-game-button" class="btn btn-primary" onclick="pairsMainLoop(6,2); startRound()">Start Game</button> <!-- run all of the generating emojis functions using one function, update a session variable with the results then call the main loop function after. -->
+                    <button type="button" id="start-game-button" class="btn btn-primary" onclick="pairsMainLoop(6,2); startRound()">
+                        Start Round 1<p style="font-size: 20px; color: white;"> match 6 cards in multiples of 2</p>
+                    </button> <!-- run all of the generating emojis functions using one function, update a session variable with the results then call the main loop function after. -->
                 </div>
 
             </div>
@@ -69,6 +75,9 @@
                     </div>
                 </div>
             </div>  -->
+            
+            <div class='spacer'>
+            </div>
         </div>
     </div>
 

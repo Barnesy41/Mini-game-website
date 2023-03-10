@@ -149,10 +149,12 @@ async function pairsMainLoop(totalNumCards, numCardsToMatch) {
 
     //generate 2 unique images
     var numImagesToGenerate = totalNumCards/2;
-    var numCardsToMatch = 2;
     var arrOfImageComponents = [];
+    GLOBAL_uncoveredCardsSrc = [];
+    GLOBAL_uncoveredCardsID = [];
     GLOBAL_numberOfCardsSelected = 0;
-    GLOBAL_numMatchesRequired = (numCardsToMatch * numImagesToGenerate) /2;
+    GLOBAL_numMatchesRequired = (numCardsToMatch * numImagesToGenerate) / 2;
+    GLOBAL_numberOfMatches = 0;
 
     for (var i = 0; i < numImagesToGenerate; i++) {
         var arrOfUsedComponents = await generateRandomEmoji(arrOfImageComponents); //Generates a random, unique, emoji.

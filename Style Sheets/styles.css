@@ -12,7 +12,7 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    position: fixed;
+    position: relative;
     height: 100vh;
     width: 100vw;
 }
@@ -20,10 +20,13 @@ body{
 /*TOOLBAR STYLING*/
 /* Add blue background to the toolbar */
 .toolbar {
+    z-index: 999;
+
     background-color: blue;
     width: 100%;
     height: 3em;
     display:flex;
+    position: fixed;
 }
 
 /* Style the links in the toolbar */
@@ -166,22 +169,24 @@ div#right{
 
 /* Pairs.php styling */
 .page-content-container{
-    position: fixed;
+    position: absolute;
     width:100%;
     height: calc(100%);
-    overflow-y: scroll;
+
+    padding-top: 3em; /* Toolbar always as top of page */
 }
 
 .pairs-container{
     background-color: grey;
     box-shadow: 5px 5px 5px 5px rgb(0, 0, 0);
     width: 1170px;
-    height: 650px !important; /* Fix this, without being important height is incorrect */
+    height: 650px; /* Fix this, without being important height is incorrect */
     margin:auto;
     margin-top: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: auto;
 }
 
 .grid-container.center {
@@ -189,7 +194,6 @@ div#right{
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    overflow: auto;
   }
 
 #start-game-button{
@@ -228,10 +232,26 @@ a.img-container.rounded:hover{
     margin: 5px;
 }
 
-#timer{
+.gameData-container{
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.data-element{
     width: auto;
     height: auto;
-    margin-top: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left:80px;
+    margin-right: 80px;
+    max-height: 30px;
+
+    text-align: center;
+}
+
+.spacer{
+    height:15px;
 }
 
 /* Styling for cards & card flip */
