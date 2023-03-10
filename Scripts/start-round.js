@@ -56,7 +56,6 @@ function endRound() {
         startButton = document.getElementById('start-game-button');
         startButton.setAttribute('onclick', "pairsMainLoop(" + numCards + "," + numCardsToMatch + "); startRound()");
         startButton.innerHTML = 'Start Round ' + GLOBAL_roundNumber + '<p style="font-size: 20px; color: white;"> match ' + numCardsToMatch + ' cards in multiples of ' + numCardsToMatch + "</p>";
-        console.log(startButton);
     }
 }
 

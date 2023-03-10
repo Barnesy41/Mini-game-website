@@ -77,7 +77,6 @@ function randomizeArray(array) {
 function flipCard(cardID, isFaceDown, emojiImageFileSrc, numCardsToMatch) {
     //TODO: error handling, especially if image src not given
     //TODO: add animations
-    console.log(emojiImageFileSrc);
     if (isFaceDown) {
         elementToDelete = document.getElementById('anchor-card-' + cardID);
         createNewElement('img', ['src', 'class', 'id'], [emojiImageFileSrc, 'img-container rounded', 'card-' + cardID], 'anchor-card-' + cardID, 'beforeBegin');
