@@ -1,7 +1,7 @@
 /* Remove margins from <body> tag */
 body{
     margin: 0px;
-    font-size: 20px;
+    /* font-size: 20px; */
 }
 
 
@@ -32,7 +32,7 @@ body{
     color: #f2f2f2; /* change the colour of text on inactive web pages */
     font-size: 20px;
     font-weight: bold;
-    padding: 0.5em 0.5em; /* increase the height of the colour above and below the text */
+    margin: 0.5em; /* increase the height of the colour above and below the text */
     white-space: nowrap;
 }
 
@@ -165,21 +165,23 @@ div#right{
 
 
 /* Pairs.php styling */
+.page-content-container{
+    position: fixed;
+    width:100%;
+    height: calc(100%);
+    overflow-y: scroll;
+}
+
 .pairs-container{
     background-color: grey;
     box-shadow: 5px 5px 5px 5px rgb(0, 0, 0);
-
     width: 1170px;
-    height: 650px;
-
+    height: 650px !important; /* Fix this, without being important height is incorrect */
     margin:auto;
     margin-top: 20px;
-
-
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 .grid-container.center {
@@ -231,3 +233,6 @@ a.img-container.rounded:hover{
     height: auto;
     margin-top: 20px;
 }
+
+/* Styling for cards & card flip */
+

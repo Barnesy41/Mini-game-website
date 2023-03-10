@@ -48,13 +48,27 @@
 
     <div class="viewport">
 
-        <h3 id="timer">0m 0s</h3>
-        <canvas id="hidden-canvas" hidden></canvas> <!-- element used to draw emojis before saving them as img -->
-        <div class="pairs-container rounded" id="pairs-container">
-            <div class = 'grid-container center' id = 'grid-container'>
-                <button type="button" id="start-game-button" class="btn btn-primary" onclick="pairsMainLoop(6,2); startRound()">Start Game</button> <!-- run all of the generating emojis functions using one function, update a session variable with the results then call the main loop function after. -->
+        <div class='page-content-container'>
+            <h3 id="timer" style="text-align: center">0m 0s</h3>
+            <canvas id="hidden-canvas" hidden></canvas> <!-- element used to draw emojis before saving them as img -->
+            <div class="pairs-container rounded" id="pairs-container">
+                <div class = 'grid-container center' id = 'grid-container'>
+                    <button type="button" id="start-game-button" class="btn btn-primary" onclick="pairsMainLoop(6,2); startRound()">Start Game</button> <!-- run all of the generating emojis functions using one function, update a session variable with the results then call the main loop function after. -->
+                </div>
+
             </div>
 
+            <!-- <div class="flip-box">
+                <div class="flip-box-inner">
+                    <div class="flip-box-front">
+                        <img src="../Images/card-background1.png" alt="Paris" style="width:300px;height:200px">
+                    </div>
+                    <div class="flip-box-back">
+                        <h2>Paris</h2>
+                        <p>What an amazing city</p>
+                    </div>
+                </div>
+            </div>  -->
         </div>
     </div>
 
