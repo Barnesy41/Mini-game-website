@@ -118,8 +118,8 @@ function checkPair(numCardsToMatch, cardID) {
             pairMatchedScoreWeight = 250; //Base score value
             var timeInSecs = getTimerValue();
 
-            console.log("NCS: " + GLOBAL_numberOfAttempts);
-            console.log("TIS: " + timeInSecs);
+            console.log("Num attempts: " + GLOBAL_numberOfAttempts);
+            console.log("Time in seconds: " + timeInSecs);
             scoreCalculation = pairMatchedScoreWeight - timeInSecs - GLOBAL_numberOfAttempts
             GLOBAL_score += (scoreCalculation >= 1) ? scoreCalculation : 1;
             
