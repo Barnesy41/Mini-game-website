@@ -111,6 +111,12 @@ function endRound() {
     }
 }
 
+function playTrack(trackName) {
+    var element = document.getElementById(trackName);
+    element.play();
+
+}
+
 function timer(initialDateTime) {
     //Get current date time
     var currentDateTime = new Date().getTime();
@@ -149,10 +155,13 @@ function getTimerValue(){
 }
 
 function startRound() {
+    playTrack('background-track');
+
     var initialDateTime = new Date().getTime();
     GLOBAL_roundStartDateTime = new Date().getTime();
 
     roundInProgress = setInterval(function () {
+
         timer(initialDateTime);
         scoreCounter();
         attemptsCounter();
@@ -162,6 +171,7 @@ function startRound() {
         }
 
         if (isFinished()) {
+            playTrack('round-complete-track');
             endRound();
         }
     }, 1000);

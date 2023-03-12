@@ -52,6 +52,8 @@
     <?php include '../Elements/navbar.php' ?>
 
     <div class="viewport" id="main">
+        <audio id="background-track" src="../Audio/background-track.mp3" controls loop></audio>
+        <audio id="round-complete-track" src="../Audio/round-complete.mp3"></audio>
 
         <div class='page-content-container'>
             <div class='gameData-container'>
