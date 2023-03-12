@@ -12,7 +12,7 @@ $_SESSION['username'] = $username;
 $_SESSION['registered'] = true;
 
 
-//Commoon cookie values
+//Common cookie values
 $exp = time() + 60 * 60 * 24 * 365;
 $path = "/";
 
