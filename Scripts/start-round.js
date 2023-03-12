@@ -132,7 +132,7 @@ function timer(initialDateTime) {
 }
 
 function scoreCounter() {
-    document.getElementById('scoreCounter').innerHTML = "Score: " + GLOBAL_score + "pts";
+    document.getElementById('scoreCounter').innerHTML = "Score: " + calculateCurrentRoundScore() + "pts";
 
 }
 
