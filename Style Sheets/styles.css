@@ -22,6 +22,9 @@ body{
 .toolbar {
     z-index: 999;
 
+    font-family: Verdana; /* Required by spec */
+    font-size: 12px; /* Required by spec */
+    font-weight: bold; /* Required by spec */
     background-color: blue;
     width: 100vw;
     height: 3em;
@@ -33,7 +36,6 @@ body{
 .toolbar a{
     text-decoration: none; /* removes the underline from the hyperlink */
     color: #f2f2f2; /* change the colour of text on inactive web pages */
-    font-size: 20px;
     font-weight: bold;
     margin: 0.5em; /* increase the height of the colour above and below the text */
     white-space: nowrap;
@@ -70,9 +72,10 @@ div#right{
 /* Size avatar icon */
 .avatar {
     vertical-align: middle;
-    width: 1.5em;
-    height:1.5em;
+    width: 2.5em;
+    height:2.5em;
     border-radius: 50%;
+    border: solid black 1px;
 }
 
 /* body styling index.php */

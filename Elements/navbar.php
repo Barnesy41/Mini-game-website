@@ -7,13 +7,13 @@
 <div class="toolbar">
     <div id="left">
       <a href="index.php" name="home" id="left">Home</a>
-      <a href="pairs.php" name="memory" id="left">Play Pairs</a>
     </div>
 
     <div id="right">
+        <a href="pairs.php" name="memory" id="right">Play Pairs</a>
       <?php
       if ($_SESSION['registered'] === false){
-        echo '<a id="right" href="registration.php">Register</a>';
+        echo '<a id="right" href="registration.php" name="register">Register</a>';
       }
       else{
         echo '<a id="right" href="leaderboard.php" name="leaderboard">Leaderboard</a>';
