@@ -140,8 +140,17 @@ function attemptsCounter() {
     document.getElementById('attemptsCounter').innerHTML = "Attempts: " + GLOBAL_numberOfAttempts;
 }
 
+function getTimerValue(){
+    //Find the amount of time elapsed
+    var currentDateTime = new Date().getTime();
+    var elapsedTime = currentDateTime - GLOBAL_roundStartDateTime;
+    elapsedTimeInSecs = Math.floor((elapsedTime % (1000 * 60)) / 1000);
+    return elapsedTimeInSecs;
+}
+
 function startRound() {
     var initialDateTime = new Date().getTime();
+    GLOBAL_roundStartDateTime = new Date().getTime();
 
     roundInProgress = setInterval(function () {
         timer(initialDateTime);

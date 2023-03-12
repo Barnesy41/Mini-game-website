@@ -111,8 +111,10 @@ function checkPair(numCardsToMatch, cardID) {
         }
 
         if (isAPair) {
-            pairMatchedScoreWeight = 1; //How much to increase the score by when a match is found
-            GLOBAL_score += pairMatchedScoreWeight;
+            pairMatchedScoreWeight = 100; //How much to increase the score by when a match is found
+            var timeInSecs = getTimerValue();
+
+            GLOBAL_score += (pairMatchedScoreWeight - timeInSecs >= 1) ? pairMatchedScoreWeight - timeInSecs : 1;
             GLOBAL_numberOfMatches += 1;
 
             //Increase necessary counters
