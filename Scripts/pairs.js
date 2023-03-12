@@ -101,6 +101,9 @@ function checkPair(numCardsToMatch, cardID) {
     GLOBAL_uncoveredCardsID.push(cardID);
 
     if (GLOBAL_numberOfCardsSelected % numCardsToMatch === 0) {
+        //Increase number of attempts to match the card
+        GLOBAL_numberOfAttempts++;
+
         var isAPair = true;
         //Check if the chosen cards are the same
         for (var i = 1; i < numCardsToMatch; i++) {
@@ -111,14 +114,17 @@ function checkPair(numCardsToMatch, cardID) {
         }
 
         if (isAPair) {
-            pairMatchedScoreWeight = 100; //How much to increase the score by when a match is found
+            //Calculate the score
+            pairMatchedScoreWeight = 250; //Base score value
             var timeInSecs = getTimerValue();
 
-            GLOBAL_score += (pairMatchedScoreWeight - timeInSecs >= 1) ? pairMatchedScoreWeight - timeInSecs : 1;
+            console.log("NCS: " + GLOBAL_numberOfAttempts);
+            console.log("TIS: " + timeInSecs);
+            scoreCalculation = pairMatchedScoreWeight - timeInSecs - GLOBAL_numberOfAttempts
+            GLOBAL_score += (scoreCalculation >= 1) ? scoreCalculation : 1;
+            
+            //Increase matches counter
             GLOBAL_numberOfMatches += 1;
-
-            //Increase necessary counters
-            GLOBAL_numberOfAttempts++;
 
             //Empty the uncovered cards array
             GLOBAL_uncoveredCardsSrc = []; //TODO: find a better method, if there is a pointer to this array it may cause issues
@@ -135,8 +141,6 @@ function checkPair(numCardsToMatch, cardID) {
                 }
             }, 250);
         }
-        //Increase necessary counters
-        GLOBAL_numberOfAttempts++;
 
         //Empty the uncovered cards array
         GLOBAL_uncoveredCardsSrc = []; //TODO: find a better method, if there is a pointer to this array it may cause issues
