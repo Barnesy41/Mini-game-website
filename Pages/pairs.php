@@ -31,7 +31,7 @@
         }
 
         //Store score for the current game in a session variable
-        $_SESSION['currentGameScores'] = array();
+        // $_SESSION['currentGameScores'] = array();
     ?>
 
     <!-- The js to generate a random emoji image -->

@@ -8,28 +8,68 @@ function isFinished() {
     }
 }
 
+function finalScoreIsPB() {
+    if (GLOBAL_previousGameScores[GLOBAL_roundNumber] < GLOBAL_roundScore[GLOBAL_roundNumber] ) {
+        return true;
+    }
+    return false;
+}
+
+function updatePB() {
+    $.ajax({
+        url: '../Elements/update-personal-best.php',
+        async: false,
+        data: {score: finalRoundScore, roundNumber: GLOBAL_roundNumber},
+    })
+}
+
+function isOnPBPace() {
+    console.log(GLOBAL_previousGameScores[GLOBAL_roundNumber - 1]);
+    console.log(calculateCurrentRoundScore());
+    if (GLOBAL_previousGameScores[GLOBAL_roundNumber-1] < calculateCurrentRoundScore()) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+function updatePairsBackgroundColor(hexCode) {
+    element = document.getElementById('pairs-container');
+    element.style.backgroundColor = hexCode;
+}
+
+function calculateCurrentRoundScore() { 
+    //Calculate the score for the current round
+    var roundScore = 0;
+    for (var i = 0; i < GLOBAL_roundScores.length; i++){
+        roundScore += GLOBAL_roundScores[i];
+    }
+    roundScore = GLOBAL_score - roundScore;
+    
+    return roundScore
+}
+
+GLOBAL_roundScores = [0, 0, 0, 0, 0, 0];
 function endRound() {
     //Stop data tracking the round
     document.getElementById('timer').innerHTML = "COMPLETE";
 
     clearInterval(roundInProgress);
 
-    GLOBAL_roundScore ;
-    //UPDATE PB if PB is set
-    if (GLOBAL_previousGameScores[GLOBAL_roundNumber] < GLOBAL_roundScore ) {
-        $.ajax({
-            url: '../Elements/get-previous-game-score.php',
-            async: false,
-            success: function (data) {
-                previousGameScore = data;
-            }
-        })
+    //Update the score for the current round
+    GLOBAL_roundScores[GLOBAL_roundNumber] = calculateCurrentRoundScore();
 
+    if (finalScoreIsPB()) {
+        updatePB();
     }
 
     //TODO: if round is not the final round
     deleteExistingEmojis();
     removeChildNodes('img-container');
+
+    //Reset background color to gray
+    updatePairsBackgroundColor('grey');
 
     var numCards = 0;
     var numCardsToMatch = 0;
@@ -91,14 +131,6 @@ function timer(initialDateTime) {
     }
 }
 
-function startTimer() {
-    var initialDateTime = new Date().getTime();
-
-    roundInProgress = setInterval(function () {
-        
-    }, 1000);
-}
-
 function scoreCounter() {
     document.getElementById('scoreCounter').innerHTML = "Score: " + GLOBAL_score + "pts";
 
@@ -115,6 +147,10 @@ function startRound() {
         timer(initialDateTime);
         scoreCounter();
         attemptsCounter();
+
+        if (isOnPBPace()) {
+            updatePairsBackgroundColor('#FFD700');
+        }
 
         if (isFinished()) {
             endRound();
