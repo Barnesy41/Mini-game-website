@@ -51,7 +51,7 @@
 <body>
     <?php include '../Elements/navbar.php' ?>
 
-    <div class="viewport">
+    <div class="viewport" id="main">
 
         <div class='page-content-container'>
             <div class='gameData-container'>

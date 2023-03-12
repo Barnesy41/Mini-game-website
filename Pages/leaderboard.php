@@ -28,7 +28,7 @@
 <html>
 <body>
     <?php include '../Elements/navbar.php' ?>
-    <div class="viewport">
+    <div class="viewport" id="main">
         
     </div>
 </body>

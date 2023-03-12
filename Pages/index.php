@@ -36,20 +36,19 @@
 <body>
 
 <?php include '../Elements/navbar.php'; ?>
-<div class="viewport">
+<div class="viewport" id=main>
 
-    <div id="main">
-        <?php
-            if ($_SESSION['registered'] == true){
-                echo "<div id='welcome-message'><p>Welcome to Paris!</p>
-                    <a href='pairs.php'>Click here to play</a></div>";
-            }
-            else{
-            echo "<div id='welcome-message'><p style='font-size: 65px'>You're not using a registered session?</p> 
-                <a href='registration.php'>Register now</a></div>";
-            }
-        ?>
-    </div>
+    <?php
+        if ($_SESSION['registered'] == true){
+            echo "<div id='welcome-message'><p>Welcome to Paris!</p>
+                <a href='pairs.php'>Click here to play</a></div>";
+        }
+        else{
+        echo "<div id='welcome-message'><p style='font-size: 65px'>You're not using a registered session?</p> 
+            <a href='registration.php'>Register now</a></div>";
+        }
+    ?>
+
 
 </div>
 

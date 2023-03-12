@@ -1,6 +1,8 @@
 /* Remove margins from <body> tag */
 body{
     margin: 0px;
+    background-image: url(../images/arcade-unsplash.jpg);
+    background-size: cover;
     /* font-size: 20px; */
 }
 
@@ -83,15 +85,20 @@ div#right{
     /* Background */
     width: 100%;
     height: 100%;
-
     background-image: url(../images/arcade-unsplash.jpg);
     background-size:100vw 100%;
     position:absolute;
 
+    background-attachment: fixed;
+    background-size: 100vw 100%;
+
     /* Text */
     text-align: center;
     color: orange;
+    font-weight: bold;
+    text-shadow: black 3px 3px;
 }
+
 
 #main a{
     text-align: center;
@@ -111,7 +118,6 @@ div#right{
     text-align: center;
     height: 100vh;
     margin:0;
-
     font-size: 100px;
     font-weight: bold;
     text-shadow: black 3px 3px;
