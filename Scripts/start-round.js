@@ -14,18 +14,18 @@ function endRound() {
 
     clearInterval(roundInProgress);
 
-    //GLOBAL_roundScore ;
+    GLOBAL_roundScore ;
     //UPDATE PB if PB is set
-    // if (GLOBAL_previousGameScores[GLOBAL_roundNumber] < GLOBAL_roundScore ) {
-    //     $.ajax({
-    //         url: '../Elements/get-previous-game-score.php',
-    //         async: false,
-    //         success: function (data) {
-    //             previousGameScore = data;
-    //         }
-    //     })
+    if (GLOBAL_previousGameScores[GLOBAL_roundNumber] < GLOBAL_roundScore ) {
+        $.ajax({
+            url: '../Elements/get-previous-game-score.php',
+            async: false,
+            success: function (data) {
+                previousGameScore = data;
+            }
+        })
 
-    // }
+    }
 
     //TODO: if round is not the final round
     deleteExistingEmojis();

@@ -1,3 +1,3 @@
 <?php
-//echo $_COOKIE['previousGameScore'];
+echo $_COOKIE['previousGameScore'];
 ?>

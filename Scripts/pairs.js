@@ -51,7 +51,9 @@ function getAllEmojiSrc() {
             stringOfEmojis = data;
         }
     })
+    console.log(stringOfEmojis);
     arrOfEmojis = stringOfEmojis.split(',');
+    console.log(arrOfEmojis);
     return arrOfEmojis;
 }
 
@@ -140,22 +142,22 @@ function checkPair(numCardsToMatch, cardID) {
     }
 }
 
-// function getPreviousGameScores() {
-//     $.ajax({
-//         url: '../Elements/get-previous-game-score.php',
-//         async: false,
-//         success: function (data) {
-//             previousGameScore = data;
-//         }
-//     })
-//     previousGameScore = previousGameScore.split(',');
-//     // console.log(previousGameScore);
-//     return previousGameScore;
-// }
+function getPreviousGameScores() {
+    $.ajax({
+        url: '../Elements/get-previous-game-score.php',
+        async: false,
+        success: function (data) {
+            previousGameScore = data;
+        }
+    })
+    previousGameScore = previousGameScore.split(',');
+    // console.log(previousGameScore);
+    return previousGameScore;
+}
 
 GLOBAL_numberOfCardsSelected = 0;
 GLOBAL_score = 0;
-// GLOBAL_roundScore = 0;
+GLOBAL_roundScore = 0;
 GLOBAL_uncoveredCardsSrc = [];
 GLOBAL_uncoveredCardsID = [];
 GLOBAL_numberOfAttempts = 0;
@@ -163,8 +165,8 @@ GLOBAL_numberOfMatches = 0;
 GLOBAL_numMatchesRequired = 0
 GLOBAL_numberOfRounds = 6;
 GLOBAL_roundNumber = 1;
-// GLOBAL_levelScores = [0];
-// GLOBAL_previousGameScores = getPreviousGameScores();
+GLOBAL_levelScores = [0];
+GLOBAL_previousGameScores = getPreviousGameScores();
 async function pairsMainLoop(totalNumCards, numCardsToMatch) {
     removeButton(); //Remove the 'start game' button
     deleteExistingEmojis();

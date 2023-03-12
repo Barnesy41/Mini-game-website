@@ -41,14 +41,14 @@ setcookie(
 );
 
 //initialize previousRoundScore cookie
-// $cookie_name = "previousGameScore";
-// $cookie_value = "0, 0, 0, 0, 0, 0";
+$cookie_name = "previousGameScore";
+$cookie_value = "0, 0, 0, 0, 0, 0";
 
-// setcookie(
-//     $cookie_name,
-//     $cookie_value,
-//     $exp,
-//     $path
-// );
+setcookie(
+    $cookie_name,
+    $cookie_value,
+    $exp,
+    $path
+);
 
 ?>

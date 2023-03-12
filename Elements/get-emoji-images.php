@@ -16,7 +16,7 @@ for ($i = 0; $i < count($files); $i++){
         //append to array in the format of initializing js array if the avatar UUID matches 
         //the UUID of the current user
         if ($avatarUUID == substr($files[$i], 0, 32)) {
-            if ($i == count($files) - 2) {
+            if ($i == count($files) - 1) {
                 $arrToString .= $files[$i];
 
             } else {
