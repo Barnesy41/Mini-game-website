@@ -41,12 +41,12 @@
     <div id="main">
         <?php
             if ($_SESSION['registered'] == true){
-                echo '<p>Welcome to Paris</p>
-                    <a href="pairs.php">Click here to play</a>';
+                echo "<div id='welcome-message'><p>Welcome to Paris!</p>
+                    <a href='pairs.php'>Click here to play</a></div>";
             }
             else{
-            echo "<p>You're not using a registered session?</p> 
-                <a href='registration.php'>Register now</a>";
+            echo "<div id='welcome-message'><p style='font-size: 65px'>You're not using a registered session?</p> 
+                <a href='registration.php'>Register now</a></div>";
             }
         ?>
     </div>

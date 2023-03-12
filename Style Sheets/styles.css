@@ -23,7 +23,7 @@ body{
     z-index: 999;
 
     background-color: blue;
-    width: 100%;
+    width: 100vw;
     height: 3em;
     display:flex;
     position: fixed;
@@ -75,15 +75,13 @@ div#right{
     border-radius: 50%;
 }
 
-
-
 /* body styling index.php */
 #main {
     /* Background */
     width: 100%;
     height: 100%;
 
-    background-image: url(../images/index-background.avif);
+    background-image: url(../images/arcade-unsplash.jpg);
     background-size:100vw 100%;
     position:absolute;
 
@@ -100,6 +98,20 @@ div#right{
 #main a:hover{
     text-align: center;
     color: rgb(175, 114, 0);
+}
+
+#welcome-message{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    margin:0;
+
+    font-size: 100px;
+    font-weight: bold;
+    text-shadow: black 3px 3px;
 }
 
 
@@ -194,7 +206,7 @@ div#right{
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-  }
+}
 
 #start-game-button{
     font-size: 96px;
