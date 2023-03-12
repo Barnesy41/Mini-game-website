@@ -174,12 +174,12 @@ async function pairsMainLoop(totalNumCards, numCardsToMatch) {
     //TODO: archive images after a given period of time?
 
     //generate 2 unique images
-    var numImagesToGenerate = totalNumCards/2;
+    var numImagesToGenerate = totalNumCards/numCardsToMatch;
     var arrOfImageComponents = [];
     GLOBAL_uncoveredCardsSrc = [];
     GLOBAL_uncoveredCardsID = [];
     GLOBAL_numberOfCardsSelected = 0;
-    GLOBAL_numMatchesRequired = (numCardsToMatch * numImagesToGenerate) / 2;
+    GLOBAL_numMatchesRequired = (numCardsToMatch * numImagesToGenerate) / numCardsToMatch;
     GLOBAL_numberOfMatches = 0;
 
     for (var i = 0; i < numImagesToGenerate; i++) {
