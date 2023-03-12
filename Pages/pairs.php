@@ -29,6 +29,9 @@
             $_SESSION['avatar'] = '';
             $_SESSION['registered'] = false;
         }
+
+        //Store score for the current game in a session variable
+        // $_SESSION['currentGameScores'] = array();
     ?>
 
     <!-- The js to generate a random emoji image -->
@@ -37,8 +40,8 @@
     <!-- The js behind the pairs game -->
     <script src="../Scripts/pairs.js"></script>
 
-    <!-- The js behind the timer -->
-    <script src="../Scripts/start-round.js"></script>
+        <!-- The js behind the timer -->
+        <script src="../Scripts/start-round.js"></script>
 
 </head>
 

@@ -14,7 +14,18 @@ function endRound() {
 
     clearInterval(roundInProgress);
 
+    //GLOBAL_roundScore ;
+    //UPDATE PB if PB is set
+    // if (GLOBAL_previousGameScores[GLOBAL_roundNumber] < GLOBAL_roundScore ) {
+    //     $.ajax({
+    //         url: '../Elements/get-previous-game-score.php',
+    //         async: false,
+    //         success: function (data) {
+    //             previousGameScore = data;
+    //         }
+    //     })
 
+    // }
 
     //TODO: if round is not the final round
     deleteExistingEmojis();
@@ -52,6 +63,7 @@ function endRound() {
                 console.log("round 6 loaded.");
                 break;
         }
+        //TODO: what happens if the final round is over
         addButton();
         startButton = document.getElementById('start-game-button');
         startButton.setAttribute('onclick', "pairsMainLoop(" + numCards + "," + numCardsToMatch + "); startRound()");
