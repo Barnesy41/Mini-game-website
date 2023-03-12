@@ -42,7 +42,7 @@ setcookie(
 
 //initialize previousRoundScore cookie
 $cookie_name = "previousGameScore";
-$cookie_value = "0, 0, 0, 0, 0, 0";
+$cookie_value = "0,0,0,0,0,0";
 
 setcookie(
     $cookie_name,
@@ -53,7 +53,7 @@ setcookie(
 
 //initialize personalBestScores cookie
 $cookie_name = "personalBestScores";
-$cookie_value = "0, 0, 0, 0, 0, 0";
+$cookie_value = "0,0,0,0,0,0";
 
 setcookie(
     $cookie_name,

@@ -9,22 +9,28 @@ function isFinished() {
 }
 
 function finalScoreIsPB() {
-    if (GLOBAL_previousGameScores[GLOBAL_roundNumber] < GLOBAL_roundScore[GLOBAL_roundNumber] ) {
+    if (GLOBAL_personalBestScores[GLOBAL_roundNumber - 1] < GLOBAL_roundScores[GLOBAL_roundNumber - 1] ) {
         return true;
     }
     return false;
 }
 
 function updatePB() {
+    console.log(GLOBAL_roundScores[GLOBAL_roundNumber - 1]);
+    console.log(GLOBAL_roundNumber-1);
     $.ajax({
         url: '../Elements/update-personal-best.php',
+        type: "POST",
         async: false,
-        data: {score: finalRoundScore, roundNumber: GLOBAL_roundNumber},
+        data: {score: GLOBAL_roundScores[GLOBAL_roundNumber - 1], roundNumber: GLOBAL_roundNumber - 1 },
+        success: function (data) {
+            console.log(data);
+        }
     })
 }
 
 function isOnPBPace() {
-    if (GLOBAL_previousGameScores[GLOBAL_roundNumber-1] < calculateCurrentRoundScore()) {
+    if (GLOBAL_personalBestScores[GLOBAL_roundNumber-1] < calculateCurrentRoundScore()) {
         return true;
     }
     else {
@@ -56,10 +62,11 @@ function endRound() {
     clearInterval(roundInProgress);
 
     //Update the score for the current round
-    GLOBAL_roundScores[GLOBAL_roundNumber] = calculateCurrentRoundScore();
+    GLOBAL_roundScores[GLOBAL_roundNumber-1] = calculateCurrentRoundScore();
 
     if (finalScoreIsPB()) {
         updatePB();
+        console.log("PB UPDATED");
     }
 
     //TODO: if round is not the final round

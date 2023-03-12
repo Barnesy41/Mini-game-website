@@ -161,6 +161,33 @@ function getPreviousGameScores() {
     return previousGameScore;
 }
 
+function getPreviousGameScores() {
+    $.ajax({
+        url: '../Elements/get-previous-game-score.php',
+        async: false,
+        success: function (data) {
+            previousGameScore = data;
+        }
+    })
+    previousGameScore = previousGameScore.split(',');
+    // console.log(previousGameScore);
+    return previousGameScore;
+}
+
+function getPersonalBestScores() {
+    $.ajax({
+        url: '../Elements/get-personal-best-scores.php',
+        async: false,
+        success: function (data) {
+            PB_Scores = data;
+        }
+    })
+    PB_Scores = PB_Scores.split(',');
+    console.log(PB_Scores);
+    // console.log(previousGameScore);
+    return PB_Scores;
+}
+
 GLOBAL_numberOfCardsSelected = 0;
 GLOBAL_score = 0;
 GLOBAL_roundScore = 0;
@@ -173,6 +200,7 @@ GLOBAL_numberOfRounds = 6;
 GLOBAL_roundNumber = 1;
 GLOBAL_levelScores = [0];
 GLOBAL_previousGameScores = getPreviousGameScores();
+GLOBAL_personalBestScores = getPersonalBestScores();
 async function pairsMainLoop(totalNumCards, numCardsToMatch) {
     removeButton(); //Remove the 'start game' button
     deleteExistingEmojis();
@@ -187,6 +215,7 @@ async function pairsMainLoop(totalNumCards, numCardsToMatch) {
     GLOBAL_numberOfCardsSelected = 0;
     GLOBAL_numMatchesRequired = (numCardsToMatch * numImagesToGenerate) / numCardsToMatch;
     GLOBAL_numberOfMatches = 0;
+    GLOBAL_personalBestScores = getPersonalBestScores();
 
     for (var i = 0; i < numImagesToGenerate; i++) {
         var arrOfUsedComponents = await generateRandomEmoji(arrOfImageComponents); //Generates a random, unique, emoji.
