@@ -24,8 +24,6 @@ function updatePB() {
 }
 
 function isOnPBPace() {
-    console.log(GLOBAL_previousGameScores[GLOBAL_roundNumber - 1]);
-    console.log(calculateCurrentRoundScore());
     if (GLOBAL_previousGameScores[GLOBAL_roundNumber-1] < calculateCurrentRoundScore()) {
         return true;
     }
