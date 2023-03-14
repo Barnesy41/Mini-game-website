@@ -25,21 +25,12 @@
 <body>
     
 <?php include '../Elements/navbar.php'; ?>
-<div class="viewport">
+<div class="viewport" id="main">
     
 
     <div style="width: 100%; height: 100%;" id="container">
         <form method="GET" id="registration-form" class="needs-validation" action="../Elements/process-registration.php" novalidate>
-            <!--Output username field -->
-            <div class="mb-3">
-                <input type="text" name="username" class="form-control" id="username" placeholder="Enter a Username..." required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-                <div class="invalid-feedback">
-                    Invalid username.
-                </div>
-            </div>
+
             <!--Output Avatar select field -->
             <!-- TODO: Add avatar selection -->
             <h3 style="text-align: center; font-weight: bold;">Create Avatar</h3>
@@ -73,6 +64,17 @@
                     <a onclick="updateImage('brows1')" id='brows'><img src="../Images/brows1.png" class="rounded img-thumbnail"></a>
                     <a onclick="updateImage('brows2')" id='brows'><img src="../Images/brows2.png" class="rounded img-thumbnail"></a>
                     <a onclick="updateImage('brows3')" id='brows'><img src="../Images/brows3.png" class="rounded img-thumbnail"></a>
+                </div>
+            </div>
+
+            <!--Output username field -->
+            <div class="mb-3">
+                <input type="text" name="username" class="form-control" id="username" placeholder="Enter a Username..." required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Invalid username.
                 </div>
             </div>
 
