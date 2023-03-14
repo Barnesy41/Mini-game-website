@@ -24,9 +24,10 @@
 
 <html>
 <body>
-
+    
+<?php include '../Elements/navbar.php'; ?>
 <div class="viewport">
-    <?php include '../Elements/navbar.php'; ?>
+    
 
     <div style="width: 100%; height: 100%;" id="container">
         <form method="GET" id="registration-form" class="needs-validation" action="../Elements/process-registration.php" novalidate>
