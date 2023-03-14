@@ -103,9 +103,16 @@ function saveAvatar() {
     var canvas = document.getElementById('avatar-canvas');
     var canvasData = canvas.toDataURL("image/png");
 
+    console.log("this ran");
     $.ajax({
         url: '../Elements/upload-avatar.php',
         type: 'POST',
-        data: { data: canvasData }
+        data: { data: canvasData },
+        success: function (data) {
+            console.log("data: " + data);
+        },
+        failure: function (data) {
+            console.log("data: " + data); 
+        }
     })
 }

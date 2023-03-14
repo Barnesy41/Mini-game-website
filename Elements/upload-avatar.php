@@ -15,5 +15,5 @@
 
   $_SESSION['avatar'] = $url . ".png";
 
-
+  echo $success;
 ?>
