@@ -1,10 +1,14 @@
 <?php
 session_start();
 
+//Retrieve the array of the past game's scores (array in format [0,0,0,0,0,0])
 $scoresArr = $_POST["data"];
 
+//Open the text file containing the leaderboard in read only mode
 $fileSrc = "../leaderboard-data.txt";
 $file = fopen($fileSrc, 'r');
+
+//Loop through each row of the leaderboard, placing an array of rows in an
 $roundNumber = 1;
 $fileToArr = [];
 while(! feof($file)){
