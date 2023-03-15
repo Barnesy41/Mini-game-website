@@ -52,6 +52,7 @@
                 <caption id='leaderboard-title'>Total Score Leaderboard</caption>
                 <thead>
                     <tr>
+                        <th>Pos</th>
                         <th>Avatar</th>
                         <th>Username</th>
                         <th>Score</th>

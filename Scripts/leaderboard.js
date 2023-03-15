@@ -64,6 +64,10 @@ function outputLeaderboard(roundToOutput, leaderboardArray) {
     for (var i = 0; i < leaderboardArray[roundToOutput - 1].length; i++) {
         const newRow = document.createElement('tr');
 
+        const positionNumCell = document.createElement('td');
+        positionNumCell.textContent = i + 1;
+        newRow.appendChild(positionNumCell);
+
         const avatarCell = document.createElement('td');
         const avatarImage = document.createElement('img');
         avatarImage.src = "../generated-images/" + leaderboardArray[roundToOutput - 1][i][2];
