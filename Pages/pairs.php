@@ -43,6 +43,8 @@
     <!-- The js behind the pairs game -->
     <script src="../Scripts/pairs.js"></script>
 
+    <!-- The js for the leaderboard, allows score to be added to leaderboard at the end of a game -->
+    <script src="../Scripts/leaderboard.js"></script>
 
 
 </head>

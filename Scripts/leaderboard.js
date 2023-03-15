@@ -1,4 +1,5 @@
-function addToLeaderboard(arrayOfScores){
+function addToLeaderboard() {
+    arrayOfScores = GLOBAL_roundScores; //For some reason passing an array as a parameter was not working
     $.ajax({
         url: '../Elements/update-leaderboard.php',
         type: 'POST',
@@ -6,6 +7,7 @@ function addToLeaderboard(arrayOfScores){
         data: { data: arrayOfScores }
     })
 
+    console.log("added new score to the leaderboard.");
 }
 
 /**

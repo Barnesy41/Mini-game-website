@@ -306,10 +306,11 @@ a.img-container.rounded:hover{
 }
 
 #leaderboard tr{
-    background-color: blue;
+    background-color: rgba(0, 0, 255, 0.5);
 }
 
 #leaderboard th{
+    background-color: blue;
     font-size: 26px;
 
 }

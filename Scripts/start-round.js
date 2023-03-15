@@ -78,6 +78,7 @@ function endRound() {
 
     var numCards = 0;
     var numCardsToMatch = 0;
+    GLOBAL_roundNumber = 6;
     if (GLOBAL_roundNumber !== GLOBAL_numberOfRounds) {
         GLOBAL_roundNumber++;
 
@@ -114,6 +115,59 @@ function endRound() {
         startButton.setAttribute('onclick', "pairsMainLoop(" + numCards + "," + numCardsToMatch + "); startRound()");
         startButton.innerHTML = 'Start Round ' + GLOBAL_roundNumber + '<p style="font-size: 20px; color: white;"> match ' + numCardsToMatch + ' cards in multiples of ' + numCardsToMatch + "</p>";
     }
+    else {
+        console.log("round ended.");
+        addPlayAgainButton();
+        addSubmitScoreButton(GLOBAL_roundScores);
+    }
+}
+
+function addPlayAgainButton() {
+    var playAgainButton = document.createElement('button');
+    
+    //Add attributes
+    playAgainButton.setAttribute('type', 'button');
+    playAgainButton.setAttribute('class', 'btn btn-primary');
+    playAgainButton.setAttribute('id', 'play-again-button');
+    playAgainButton.textContent = 'Play Again';
+    playAgainButton.setAttribute('onclick', 'deleteReplayButtons(); addStartButton();');
+    
+    //Get the adjacent element
+    var adjacentElement = document.getElementById('grid-container');
+
+    //Add the element to the document
+    adjacentElement.insertAdjacentElement('afterbegin', playAgainButton);
+
+    console.log("added play again buttons");
+}    
+
+function addSubmitScoreButton(arrOfRoundScores) {
+    var submitScoreButton = document.createElement('button');
+    
+    //Add attributes
+    submitScoreButton.setAttribute('type', 'button');
+    submitScoreButton.setAttribute('class', 'btn btn-primary');
+    submitScoreButton.setAttribute('id', 'submit-score-button');
+    submitScoreButton.textContent = 'Submit Score';
+    submitScoreButton.setAttribute("onclick", 'addToLeaderboard(); deleteReplayButtons(); addStartButton();');
+    console.log("onclick", 'addToLeaderboard(' + GLOBAL_roundScores + '); deleteReplayButtons(); addStartButton();');
+    console.log(typeof (GLOBAL_roundScores));
+    console.log(GLOBAL_roundScores);
+
+    //Get the adjacent element
+    var adjacentElement = document.getElementById('grid-container');
+
+    //Add the element to the document
+    adjacentElement.insertAdjacentElement('afterbegin', submitScoreButton);
+    
+}
+
+function deleteReplayButtons() {
+    element = document.getElementById('play-again-button');
+    element.remove();
+
+    element = document.getElementById('submit-score-button');
+    element.remove();
 }
 
 function playTrack(trackName) {

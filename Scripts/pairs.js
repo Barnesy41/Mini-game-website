@@ -17,6 +17,26 @@ function addButton() {
     //Add the element to the document
     adjacentElement.insertAdjacentElement('afterbegin', startButton);
 }
+
+function addStartButton() {
+    var startButton = document.createElement('button');
+
+    //add attributes to start button
+    startButton.setAttribute('onclick', "pairsMainLoop(6,2); startRound();");
+    GLOBAL_roundNumber = 1;
+    numCardsToMatch = 2;
+    startButton.innerHTML = 'Start Round ' + GLOBAL_roundNumber + '<p style="font-size: 20px; color: white;"> match ' + numCardsToMatch + ' cards in multiples of ' + numCardsToMatch + "</p>";
+
+    startButton.setAttribute('type', 'button');
+    startButton.setAttribute('class', 'btn btn-primary');
+    startButton.setAttribute('id', 'start-game-button');
+
+    //Get the adjacent element
+    var adjacentElement = document.getElementById('grid-container');
+
+    //Add the element to the document
+    adjacentElement.insertAdjacentElement('afterbegin', startButton);
+}
     
 
 function removeChildNodes(className) {
@@ -51,9 +71,7 @@ function getAllEmojiSrc() {
             stringOfEmojis = data;
         }
     })
-    console.log(stringOfEmojis);
     arrOfEmojis = stringOfEmojis.split(',');
-    console.log(arrOfEmojis);
     return arrOfEmojis;
 }
 
@@ -118,8 +136,6 @@ function checkPair(numCardsToMatch, cardID) {
             pairMatchedScoreWeight = 250; //Base score value
             var timeInSecs = getTimerValue();
 
-            console.log("Num attempts: " + GLOBAL_numberOfAttempts);
-            console.log("Time in seconds: " + timeInSecs);
             scoreCalculation = pairMatchedScoreWeight - timeInSecs - GLOBAL_numberOfAttempts
             GLOBAL_score += (scoreCalculation >= 1) ? scoreCalculation : 1;
             
@@ -157,7 +173,6 @@ function getPreviousGameScores() {
         }
     })
     previousGameScore = previousGameScore.split(',');
-    // console.log(previousGameScore);
     return previousGameScore;
 }
 
@@ -170,7 +185,6 @@ function getPreviousGameScores() {
         }
     })
     previousGameScore = previousGameScore.split(',');
-    // console.log(previousGameScore);
     return previousGameScore;
 }
 
@@ -183,8 +197,6 @@ function getPersonalBestScores() {
         }
     })
     PB_Scores = PB_Scores.split(',');
-    console.log(PB_Scores);
-    // console.log(previousGameScore);
     return PB_Scores;
 }
 
@@ -248,6 +260,7 @@ async function pairsMainLoop(totalNumCards, numCardsToMatch) {
         var functionToCall = 'flipCard(' + i + ',' + true + ',"' + emojiFileSrc + '", '+ numCardsToMatch + '); checkPair(' + numCardsToMatch + ', "' + i + '");';
         createNewElement('a', ['class', 'id', 'onclick'], ['img-container rounded', ID, functionToCall], 'grid-container', "afterBegin");   
     }
+    console.log(arrOfEmojisSrc.reverse());
     
    
 
