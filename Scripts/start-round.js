@@ -78,7 +78,7 @@ function endRound() {
 
     var numCards = 0;
     var numCardsToMatch = 0;
-    //GLOBAL_roundNumber = 6; //TODO: remove, for testing purposes.
+    GLOBAL_roundNumber = 6; //TODO: remove, for testing purposes.
     if (GLOBAL_roundNumber !== GLOBAL_numberOfRounds) {
         GLOBAL_roundNumber++;
 
@@ -118,8 +118,26 @@ function endRound() {
     else {
         console.log("game ended.");
         addPlayAgainButton();
-        addSubmitScoreButton(GLOBAL_roundScores);
+
+        if (isRegistered()) {
+            addSubmitScoreButton(GLOBAL_roundScores);
+        }
     }
+}
+
+function isRegistered() {
+    $.ajax({
+        url: '../Elements/is-user-registered.php',
+        type: 'POST',
+        async: false,
+        data: {},
+        success: function (data) {
+            isUserRegistered = data
+        }
+
+    })
+    console.log(isUserRegistered);
+    return isUserRegistered;
 }
 
 function addPlayAgainButton() {
@@ -166,7 +184,9 @@ function deleteReplayButtons() {
     element.remove();
 
     element = document.getElementById('submit-score-button');
-    element.remove();
+    if (element != null) {
+        element.remove();
+    }
 }
 
 function resetGlobalVariables() {
