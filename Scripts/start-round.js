@@ -235,6 +235,7 @@ function startRound() {
     var initialDateTime = new Date().getTime();
     GLOBAL_roundStartDateTime = new Date().getTime();
 
+    GLOBAL_numberOfAttempts = 0; //Set attempts counter to zero
     roundInProgress = setInterval(function () {
 
         timer(initialDateTime);
