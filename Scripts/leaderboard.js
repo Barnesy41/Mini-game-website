@@ -4,9 +4,12 @@ function addToLeaderboard() {
         url: '../Elements/update-leaderboard.php',
         type: 'POST',
         async: false, //Might be able to let this be true
-        data: { data: arrayOfScores }
+        data: { data: arrayOfScores },
+        success: function (data) {
+            ret = data;
+        }
     })
-
+    console.log(ret);
     console.log("added new score to the leaderboard.");
 }
 

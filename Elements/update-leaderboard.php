@@ -45,10 +45,25 @@ while(! feof($file)){
 }
 fclose($file);
 
+//Make each comma be a seperator between array elements, allowing to sort by score.
+for ($i = 0; $i < count($fileToArr); $i++) {
+    for ($k = 0; $k < count($fileToArr[$i]); $k++) {
+        $fileToArr[$i][$k] = explode(',', $fileToArr[$i][$k]);
+    }
+}
+
 //Sort the scores into order
 for ($i = 0; $i < count($fileToArr); $i++){
     rsort($fileToArr[$i]);
 }
+
+//Turn the array back into the comma seperated form
+for ($i = 0; $i < count($fileToArr); $i++) {
+    for ($k = 0; $k < count($fileToArr[$i]); $k++) {
+        $fileToArr[$i][$k] = implode(',', $fileToArr[$i][$k]);
+    }
+}
+print_r($fileToArr);
 
 //Create a new leaderboard file
 $file = fopen("../leaderboard-data.txt", 'w');
