@@ -30,6 +30,7 @@
 
     <!-- The js behind the leaderboard -->
     <script src="../Scripts/leaderboard.js"></script>
+
 </head>
 
 <html>
@@ -48,6 +49,7 @@
 
         <div id="leaderboard">
             <table id='leaderboard-table'>
+                <caption>Total Score Leaderboard</caption>
                 <thead>
                     <tr>
                         <th>Avatar</th>
@@ -64,3 +66,7 @@
         </div>
     </div>
 </body>
+
+<script>
+    outputLeaderboard(7, getLeaderboardAsArr());
+</script>

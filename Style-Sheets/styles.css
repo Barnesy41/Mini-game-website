@@ -308,3 +308,21 @@ a.img-container.rounded:hover{
 #leaderboard tr{
     background-color: blue;
 }
+
+#leaderboard th{
+    font-size: 26px;
+
+}
+
+#leaderboard caption{
+    caption-side: top;
+    text-align: center;
+    
+    background-color: blue;
+
+    font-size: 32px;
+    text-align: center;
+    color: orange;
+    font-weight: bold;
+    text-shadow: 0 2px 5px black;
+}
