@@ -95,7 +95,7 @@ div#right{
     text-align: center;
     color: orange;
     font-weight: bold;
-    text-shadow: black 3px 3px;
+    text-shadow: 0 2px 5px black;
 }
 
 
@@ -119,7 +119,7 @@ div#right{
     margin:0;
     font-size: 100px;
     font-weight: bold;
-    text-shadow: black 3px 3px;
+    text-shadow: 0 2px 5px black;
 }
 
 
@@ -284,4 +284,27 @@ a.img-container.rounded:hover{
     font-family: Verdana !important;
     font-weight: bold !important;
     box-shadow: 0 2px 5px black;
+}
+
+#leaderboard{
+    background-color: gray;
+    box-shadow: 5px;
+
+    margin-top: 5px;
+    width: 750px;
+
+    max-height: 700px;
+
+    overflow: auto;
+}
+
+#leaderboard table{
+    border-collapse: separate;
+    border-spacing: 2px;
+
+    width:750px;
+}
+
+#leaderboard tr{
+    background-color: blue;
 }
