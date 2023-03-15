@@ -6,7 +6,14 @@ if(session_status() !== PHP_SESSION_ACTIVE) {
 
 $url = md5(uniqid(rand(), true));
 $upload_dir = "../generated-emoji-images/";
-$avatarUUID = substr($_SESSION['avatar'], 0, 32);
+
+//Set the UUID to a default one if the user is not registered, otherwise get user's UUID
+if($_SESSION['avatar'] == ''){
+    $avatarUUID = 'UUID_For_Unregistered_Userrnames';
+}
+else{
+    $avatarUUID = substr($_SESSION['avatar'], 0, 32);
+}
 
 $img = $_POST['data'];
 $img = substr($img,strpos($img,",")+1);

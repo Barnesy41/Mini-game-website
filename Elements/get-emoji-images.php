@@ -6,7 +6,14 @@ if(session_status() !== PHP_SESSION_ACTIVE) {
 
 $path    = '../generated-emoji-images';
 $files = scandir($path);
-$avatarUUID = substr($_SESSION['avatar'], 0, 32);
+
+//Set the UUID to a default one if the user is not registered, otherwise get user's UUID
+if($_SESSION['avatar'] == ''){
+    $avatarUUID = 'UUID_For_Unregistered_Userrnames';
+}
+else{
+    $avatarUUID = substr($_SESSION['avatar'], 0, 32);
+}
 
 $arrToString = '';
 for ($i = 0; $i < count($files); $i++){
