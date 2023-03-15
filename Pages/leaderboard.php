@@ -49,7 +49,7 @@
 
         <div id="leaderboard">
             <table id='leaderboard-table'>
-                <caption>Total Score Leaderboard</caption>
+                <caption id='leaderboard-title'>Total Score Leaderboard</caption>
                 <thead>
                     <tr>
                         <th>Avatar</th>

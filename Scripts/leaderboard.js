@@ -48,7 +48,17 @@ function outputLeaderboard(roundToOutput, leaderboardArray) {
         tbody.removeChild(tbody.firstChild);
     }
 
-    //Output new leaderboard
+    //Output new leaderboard title
+    const tableTitle = document.querySelector('#leaderboard-title');
+
+    if (roundToOutput <= 6) {
+        tableTitle.textContent = 'Round ' + roundToOutput + ' Leaderboard';
+    }
+    else { //If the round is round 7, this is the total score leaderboard
+        tableTitle.textContent = 'Total Score Leaderboard';
+    }
+
+    //Output new leaderboard body
     const tableBody = document.querySelector('#leaderboard-table tbody');
 
     for (var i = 0; i < leaderboardArray[roundToOutput - 1].length; i++) {
