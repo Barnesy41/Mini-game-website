@@ -74,7 +74,8 @@ $file = fopen("../leaderboard-data.txt", 'w');
 
 //Write the new data to the leaderboard-data.txt file
 for ($i = 0; $i < count($fileToArr); $i++){
-    fwrite($file, 'Round: ' . $i + 1 . "\n");
+    $stringToWrite = "Round: " . (string)($i + 1) . "\n";
+    fwrite($file, $stringToWrite);
 
     for ($k=0; $k < count($fileToArr[$i]); $k++){
         if ($i == 6 && $k == count($fileToArr[$i]) - 1){
