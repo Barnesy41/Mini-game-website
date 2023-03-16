@@ -58,6 +58,8 @@ GLOBAL_roundScores = [0, 0, 0, 0, 0, 0];
 function endRound() {
     //Stop data tracking the round
     document.getElementById('timer').innerHTML = "COMPLETE";
+    document.getElementById('scoreCounter').innerHTML = "Score: 0pts";
+    document.getElementById('attemptsCounter').innerHTML = "Attempts: 0";
 
     clearInterval(roundInProgress);
 
