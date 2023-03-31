@@ -80,7 +80,7 @@ function endRound() {
 
     var numCards = 0;
     var numCardsToMatch = 0;
-    GLOBAL_roundNumber = 6; //TODO: remove, for testing purposes.
+    //GLOBAL_roundNumber = 6; //Enter test-mode
     if (GLOBAL_roundNumber !== GLOBAL_numberOfRounds) {
         GLOBAL_roundNumber++;
 
